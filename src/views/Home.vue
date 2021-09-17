@@ -14,21 +14,35 @@
 
 <script>
 import InfoBox from '@/components/InfoBox.vue'
-import useInfo from '@/composables/useInfo'
+import getInfo from '@/composables/getInfo'
 import { ref } from '@vue/reactivity'
+
 
 
 export default {
   name: 'Home',
   components: {InfoBox},
   setup(){
-   
+    const  {info,error,load} = getInfo()
     const labels = ['Total Cases', 'New Cases', 'Total Deaths', 'Deaths Today']
-    const numbers = ['1200', '14', '2','150']
+    const numbers = ref([])
     const colors = ['text-yellow-400', 'text-green-300',  'text-red-500','text-blue-400']
     
-  
+
+     const getData = async () => {
+       await load()
+       console.log(info.value.Global)
+       numbers.value = [info.value.Global.TotalConfirmed, info.value.Global.NewConfirmed, info.value.Global.TotalDeaths,info.value.Global.NewDeaths]
+     }
+
+     getData()
+
+
+     
+
     return {labels, numbers,colors}
+
+
        
   }
 }
