@@ -31,8 +31,8 @@ export default {
 
      const getData = async () => {
        await load()
-       console.log(info.value.Global)
-       numbers.value = [info.value.Global.TotalConfirmed, info.value.Global.NewConfirmed, info.value.Global.TotalDeaths,info.value.Global.NewDeaths]
+       console.log(info.value.Countries)
+       numbers.value = [info.value.Global.TotalConfirmed.toLocaleString(), info.value.Global.NewConfirmed.toLocaleString(), info.value.Global.TotalDeaths.toLocaleString(),info.value.Global.NewDeaths.toLocaleString()]
      }
 
      getData()
